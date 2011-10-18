@@ -1,0 +1,16 @@
+Goal:
+	Input: English sentences describing mathematical expressions, functions, etc
+	Output: LaTeX code
+
+
+Example:
+	in: (4 divided by 3) times the integral from 0 to 1 of x squared dx
+	-- or --
+	int: (4/3) integral_0^1 x^2 dx
+	out: \frac{4}{3} \cdot \displaystyle\int_0^1 x^2 dx
+	
+Method:
+	Need a REPL
+	Set up parsing rules for the user. Parentheses or brackets will group sections.
+	
+	
