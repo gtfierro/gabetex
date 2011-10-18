@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '"\xe0\'\xa1\xbd\x8b\xbe%\xfc\x03\x7f\xc5\xdfm\x9e\x9b'
+_lr_signature = 'x\x07t\x1e\x9a\xc5\x13PoJ\x8d\xe2\xcac\x001'
     
-_lr_action_items = {'RPAREN':([1,6,12,],[-8,12,-7,]),'DIVIDE':([1,5,12,],[-8,7,-7,]),'POWER':([1,5,12,],[-8,8,-7,]),'NUMBER':([0,3,7,8,9,10,11,],[1,1,1,1,1,1,1,]),'TIMES':([1,5,12,],[-8,9,-7,]),'PLUS':([1,5,12,],[-8,10,-7,]),'LPAREN':([0,3,7,8,9,10,11,],[3,3,3,3,3,3,3,]),'LINE':([0,],[4,]),'MINUS':([1,5,12,],[-8,11,-7,]),'$end':([1,2,4,12,13,14,15,16,17,],[-8,0,-1,-7,-5,-6,-4,-2,-3,]),}
+_lr_action_items = {'RPAREN':([1,2,5,6,8,14,15,16,17,18,19,],[-7,-8,-9,-10,14,-11,-5,-6,-4,-2,-3,]),'DIVIDE':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,9,9,-11,-5,-6,-4,-2,-3,]),'POWER':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,10,10,-11,-5,-6,-4,-2,-3,]),'NUMBER':([0,3,9,10,11,12,13,],[2,2,2,2,2,2,2,]),'TIMES':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,11,11,-11,-5,-6,-4,-2,-3,]),'PLUS':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,12,12,-11,-5,-6,-4,-2,-3,]),'LPAREN':([0,3,9,10,11,12,13,],[3,3,3,3,3,3,3,]),'VARIABLE':([0,3,9,10,11,12,13,],[5,5,5,5,5,5,5,]),'LINE':([0,3,9,10,11,12,13,],[6,6,6,6,6,6,6,]),'MINUS':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,13,13,-11,-5,-6,-4,-2,-3,]),'$end':([1,2,4,5,6,7,14,15,16,17,18,19,],[-7,-8,0,-9,-10,-1,-11,-5,-6,-4,-2,-3,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,3,7,8,9,10,11,],[5,6,13,14,15,16,17,]),'statement':([0,],[2,]),}
+_lr_goto_items = {'term':([0,3,9,10,11,12,13,],[1,1,15,16,17,18,19,]),'expression':([0,3,],[7,8,]),'statement':([0,],[4,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -26,12 +26,15 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> LINE','statement',1,'p_statement_expr','yacc.py',8),
-  ('statement -> expression PLUS expression','statement',3,'p_expression_binop','yacc.py',12),
-  ('statement -> expression MINUS expression','statement',3,'p_expression_binop','yacc.py',13),
-  ('statement -> expression TIMES expression','statement',3,'p_expression_binop','yacc.py',14),
-  ('statement -> expression DIVIDE expression','statement',3,'p_expression_binop','yacc.py',15),
-  ('statement -> expression POWER expression','statement',3,'p_expression_binop','yacc.py',16),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression','yacc.py',24),
-  ('expression -> NUMBER','expression',1,'p_expression','yacc.py',25),
+  ('statement -> expression','statement',1,'p_statement','yacc.py',8),
+  ('expression -> expression PLUS term','expression',3,'p_expression_binop','yacc.py',13),
+  ('expression -> expression MINUS term','expression',3,'p_expression_binop','yacc.py',14),
+  ('expression -> expression TIMES term','expression',3,'p_expression_binop','yacc.py',15),
+  ('expression -> expression DIVIDE term','expression',3,'p_expression_binop','yacc.py',16),
+  ('expression -> expression POWER term','expression',3,'p_expression_binop','yacc.py',17),
+  ('expression -> term','expression',1,'p_expression_binop','yacc.py',18),
+  ('term -> NUMBER','term',1,'p_term','yacc.py',28),
+  ('term -> VARIABLE','term',1,'p_term','yacc.py',29),
+  ('term -> LINE','term',1,'p_term','yacc.py',30),
+  ('term -> LPAREN expression RPAREN','term',3,'p_term','yacc.py',31),
 ]
