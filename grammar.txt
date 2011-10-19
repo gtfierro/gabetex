@@ -1,21 +1,18 @@
-line		:	expression //here, we print ''.join(p[1]) or something
+latex		:	LINE
 
 expression	:	expression + term
 			|	expression - term
-			|	expression * term
-			|	expression / term
-			|	expression ^ term
+			|	term
+			|	DELIM expression DELIM
 			
 term		:	term * factor
 			|	term / factor
 			|	factor
 			
 factor		:	NUMBER
+			|	VARIABLE
 			|	( expression )
-			
-			
-// need a way of delineating what has already been evaluated
-// wrap it in $ at beg, $ at end. If we have to concatenate two $$ wrapped
-// expressions, then we evaluate it to one bigger expression!
+
+// not sure if unambiguous
 
 		

@@ -13,6 +13,7 @@ tokens = (
 		'PHRASE',
 		'LPAREN',
 		'RPAREN',
+		'DELIM',
 		'LINE',
 		)
 
@@ -25,6 +26,7 @@ t_DIVIDE = r'/'
 t_POWER  = r'\^'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_DELIM = r'\$'
 t_LINE	= r'\$[^\$]+\$'
 
 def t_PHRASE(t):

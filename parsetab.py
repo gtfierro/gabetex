@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'x\x07t\x1e\x9a\xc5\x13PoJ\x8d\xe2\xcac\x001'
+_lr_signature = 'k|\xa4\xa0$\xbc\x95\xfa\xb6\xa5|\xa5\x1a~\x1bn'
     
-_lr_action_items = {'RPAREN':([1,2,5,6,8,14,15,16,17,18,19,],[-7,-8,-9,-10,14,-11,-5,-6,-4,-2,-3,]),'DIVIDE':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,9,9,-11,-5,-6,-4,-2,-3,]),'POWER':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,10,10,-11,-5,-6,-4,-2,-3,]),'NUMBER':([0,3,9,10,11,12,13,],[2,2,2,2,2,2,2,]),'TIMES':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,11,11,-11,-5,-6,-4,-2,-3,]),'PLUS':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,12,12,-11,-5,-6,-4,-2,-3,]),'LPAREN':([0,3,9,10,11,12,13,],[3,3,3,3,3,3,3,]),'VARIABLE':([0,3,9,10,11,12,13,],[5,5,5,5,5,5,5,]),'LINE':([0,3,9,10,11,12,13,],[6,6,6,6,6,6,6,]),'MINUS':([1,2,5,6,7,8,14,15,16,17,18,19,],[-7,-8,-9,-10,13,13,-11,-5,-6,-4,-2,-3,]),'$end':([1,2,4,5,6,7,14,15,16,17,18,19,],[-7,-8,0,-9,-10,-1,-11,-5,-6,-4,-2,-3,]),}
+_lr_action_items = {'RPAREN':([2,4,6,7,12,15,16,17,18,19,20,],[-5,-9,-8,-10,18,-7,-6,-2,-11,-3,-4,]),'DIVIDE':([2,4,6,7,15,16,18,19,20,],[9,-9,-8,-10,-7,-6,-11,9,9,]),'DELIM':([0,2,3,4,5,6,7,11,15,16,17,18,19,20,],[3,-5,3,-9,3,-8,-10,17,-7,-6,-2,-11,-3,-4,]),'NUMBER':([0,3,5,9,10,13,14,],[4,4,4,4,4,4,4,]),'TIMES':([2,4,6,7,15,16,18,19,20,],[10,-9,-8,-10,-7,-6,-11,10,10,]),'PLUS':([2,4,6,7,8,11,12,15,16,17,18,19,20,],[-5,-9,-8,-10,13,13,13,-7,-6,-2,-11,-3,-4,]),'LPAREN':([0,3,5,9,10,13,14,],[5,5,5,5,5,5,5,]),'VARIABLE':([0,3,5,9,10,13,14,],[7,7,7,7,7,7,7,]),'MINUS':([2,4,6,7,8,11,12,15,16,17,18,19,20,],[-5,-9,-8,-10,14,14,14,-7,-6,-2,-11,-3,-4,]),'$end':([1,2,4,6,7,8,15,16,17,18,19,20,],[0,-5,-9,-8,-10,-1,-7,-6,-2,-11,-3,-4,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'term':([0,3,9,10,11,12,13,],[1,1,15,16,17,18,19,]),'expression':([0,3,],[7,8,]),'statement':([0,],[4,]),}
+_lr_goto_items = {'latex':([0,],[1,]),'term':([0,3,5,13,14,],[2,2,2,19,20,]),'expression':([0,3,5,],[8,11,12,]),'factor':([0,3,5,9,10,13,14,],[6,6,6,15,16,6,6,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -25,16 +25,16 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> statement","S'",1,None,None,None),
-  ('statement -> expression','statement',1,'p_statement','yacc.py',8),
-  ('expression -> expression PLUS term','expression',3,'p_expression_binop','yacc.py',13),
-  ('expression -> expression MINUS term','expression',3,'p_expression_binop','yacc.py',14),
-  ('expression -> expression TIMES term','expression',3,'p_expression_binop','yacc.py',15),
-  ('expression -> expression DIVIDE term','expression',3,'p_expression_binop','yacc.py',16),
-  ('expression -> expression POWER term','expression',3,'p_expression_binop','yacc.py',17),
-  ('expression -> term','expression',1,'p_expression_binop','yacc.py',18),
-  ('term -> NUMBER','term',1,'p_term','yacc.py',28),
-  ('term -> VARIABLE','term',1,'p_term','yacc.py',29),
-  ('term -> LINE','term',1,'p_term','yacc.py',30),
-  ('term -> LPAREN expression RPAREN','term',3,'p_term','yacc.py',31),
+  ("S' -> latex","S'",1,None,None,None),
+  ('latex -> expression','latex',1,'p_latex','yacc.py',8),
+  ('expression -> DELIM expression DELIM','expression',3,'p_expression','yacc.py',12),
+  ('expression -> expression PLUS term','expression',3,'p_expression','yacc.py',13),
+  ('expression -> expression MINUS term','expression',3,'p_expression','yacc.py',14),
+  ('expression -> term','expression',1,'p_expression','yacc.py',15),
+  ('term -> term TIMES factor','term',3,'p_term','yacc.py',25),
+  ('term -> term DIVIDE factor','term',3,'p_term','yacc.py',26),
+  ('term -> factor','term',1,'p_term','yacc.py',27),
+  ('factor -> NUMBER','factor',1,'p_factor','yacc.py',37),
+  ('factor -> VARIABLE','factor',1,'p_factor','yacc.py',38),
+  ('factor -> LPAREN expression RPAREN','factor',3,'p_factor','yacc.py',39),
 ]
