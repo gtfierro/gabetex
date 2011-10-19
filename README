@@ -10,7 +10,16 @@ Example:
 	out: \frac{4}{3} \cdot \displaystyle\int_0^1 x^2 dx
 	
 Method:
-	Need a REPL
-	Set up parsing rules for the user. Parentheses or brackets will group sections.
+	Using ply for the lexer/parser, but I'm writing my own grammar.
+	
+Currently supports:
+	+ - * / (but not negative numbers).
+
+Coming Soon:
+	-negative numbers
+	-exponents
+	-integrals
+	-trigonometric functions
+	-greek characters
 	
 	
